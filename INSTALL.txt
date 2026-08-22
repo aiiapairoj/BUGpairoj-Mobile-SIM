@@ -1,0 +1,13 @@
+BUGpairoj Mobile SIM - INSTALL
+
+1) เปิด Google Chrome
+2) พิมพ์ chrome://extensions
+3) เปิด Developer mode
+4) คลิก Load unpacked
+5) เลือกโฟลเดอร์ BUGpairoj-Mobile-SIM
+6) เปิดเว็บ http:// หรือ https://
+7) คลิกไอคอน BUGpairoj Mobile SIM
+
+Shortcut:
+Alt+Shift+M = เปิด/ปิด
+Alt+Shift+S = Screenshot
