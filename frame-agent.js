@@ -1,6 +1,6 @@
 /**
- * BUGpairoj Mobile SIM - frame sync agent.
- * Loaded in every frame but activates only inside preview iframes named "bugsim-device-*".
+ * BUGpairoj Mobile SIM v1.5.0 - frame sync/readiness agent.
+ * Runs in preview frames and reports successful rendering to the host overlay.
  */
 
 (() => {
@@ -8,27 +8,20 @@
   window.__BUGSIM_FRAME_AGENT__ = true;
 
   const frameName = String(window.name || '');
-  if (!frameName.startsWith('bugsim-device-')) return;
+  let parsedUrl = null;
+  try { parsedUrl = new URL(location.href); } catch {}
 
-  const deviceId = frameName.slice('bugsim-device-'.length) || 'unknown';
+  const nameDeviceId = frameName.startsWith('bugsim-device-')
+    ? frameName.slice('bugsim-device-'.length)
+    : '';
+  const markerDeviceId = parsedUrl?.searchParams.get('__bugsim') || '';
+  const deviceId = nameDeviceId || markerDeviceId;
+  if (!deviceId) return;
+
   let applyingUntil = 0;
   let inputTimer = null;
   let scrollTimer = null;
-
-  const currentUrl = new URL(location.href);
-  const markerPlatform = currentUrl.searchParams.get('__bugsim_platform') || 'android';
-
-  function markedUrl(rawUrl) {
-    try {
-      const url = new URL(rawUrl, location.href);
-      if (!['http:', 'https:'].includes(url.protocol)) return rawUrl;
-      url.searchParams.set('__bugsim', deviceId);
-      url.searchParams.set('__bugsim_platform', markerPlatform);
-      return url.toString();
-    } catch {
-      return rawUrl;
-    }
-  }
+  const markerPlatform = parsedUrl?.searchParams.get('__bugsim_platform') || 'android';
 
   function isApplying() {
     return Date.now() < applyingUntil;
@@ -73,6 +66,21 @@
     } catch {}
   }
 
+  function reportReady() {
+    post('ready', {
+      url: location.href,
+      title: document.title || '',
+      readyState: document.readyState
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', reportReady, { once: true });
+  } else {
+    queueMicrotask(reportReady);
+  }
+  window.addEventListener('pageshow', reportReady);
+
   function normalizedScroll() {
     const scroller = document.scrollingElement || document.documentElement;
     const maxY = Math.max(1, scroller.scrollHeight - window.innerHeight);
@@ -90,19 +98,19 @@
   }, { passive: true, capture: true });
 
   document.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target.closest('a,button,[role="button"],input[type="button"],input[type="submit"]') : null;
+    const target = event.target instanceof Element
+      ? event.target.closest('a,button,[role="button"],input[type="button"],input[type="submit"]')
+      : null;
     if (!target) return;
 
-    // Keep regular navigations inside the preview and preserve the marker used by scoped DNR rules.
+    // Do not rewrite URLs with BUGSIM markers after navigation. window.name is
+    // enough to identify the preview frame and avoids breaking canonical/login URLs.
     if (target instanceof HTMLAnchorElement && target.href && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
       const requestedTarget = String(target.target || '_self').toLowerCase();
-      if (['_self', '_top', '_parent', ''].includes(requestedTarget)) {
-        const nextUrl = markedUrl(target.href);
-        if (nextUrl !== target.href || ['_top', '_parent'].includes(requestedTarget)) {
-          event.preventDefault();
-          location.href = nextUrl;
-          return;
-        }
+      if (['_top', '_parent'].includes(requestedTarget)) {
+        event.preventDefault();
+        location.href = target.href;
+        return;
       }
     }
 
@@ -131,9 +139,6 @@
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
     if (['_top', '_parent'].includes(String(form.target).toLowerCase())) form.target = '_self';
-    try {
-      form.action = markedUrl(form.action || location.href);
-    } catch {}
   }, true);
 
   window.addEventListener('message', (event) => {
@@ -171,10 +176,6 @@
 
   function safeQuery(selector) {
     if (!selector || typeof selector !== 'string' || selector.length > 1000) return null;
-    try {
-      return document.querySelector(selector);
-    } catch {
-      return null;
-    }
+    try { return document.querySelector(selector); } catch { return null; }
   }
 })();

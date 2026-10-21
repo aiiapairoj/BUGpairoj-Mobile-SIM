@@ -1,30 +1,161 @@
 {
-  "extName": {"message": "BUGpairoj Mobile SIM"},
-  "extDescription": {"message": "Preview and test a website across multiple viewport sizes in one overlay."},
-  "settings": {"message": "Settings"},
-  "close": {"message": "Close"},
-  "rotate": {"message": "Rotate"},
-  "screenshot": {"message": "Screenshot"},
-  "record": {"message": "Record"},
-  "stopRecord": {"message": "Stop recording"},
-  "theme": {"message": "Theme"},
-  "focus": {"message": "Focus"},
-  "scale": {"message": "Scale"},
-  "devices": {"message": "Devices"},
-  "syncScroll": {"message": "Sync scroll"},
-  "syncClick": {"message": "Sync click"},
-  "syncInput": {"message": "Sync input"},
-  "deviceChrome": {"message": "Show device chrome"},
-  "compatibility": {"message": "Compatibility Mode"},
-  "compatibilityHelp": {"message": "Use when iframe is blank: relaxes CSP only for subframes in this tab."},
-  "customResolution": {"message": "Custom resolution"},
-  "addCustom": {"message": "Add custom"},
-  "width": {"message": "Width"},
-  "height": {"message": "Height"},
-  "maxDevices": {"message": "Choose up to 5 devices"},
-  "about": {"message": "About"},
-  "recording": {"message": "Recording"},
-  "captureDone": {"message": "Screenshot saved"},
-  "recordDone": {"message": "Recording saved"},
-  "unsupported": {"message": "This page does not allow extension injection"}
+  "extName": {
+    "message": "BUGpairoj Mobile SIM"
+  },
+  "extDescription": {
+    "message": "Preview websites across multiple viewport sizes with Smart Auto Detection, Deep Compatibility, and per-domain mode memory."
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "close": {
+    "message": "Close"
+  },
+  "rotate": {
+    "message": "Rotate"
+  },
+  "screenshot": {
+    "message": "Screenshot"
+  },
+  "record": {
+    "message": "Record"
+  },
+  "stopRecord": {
+    "message": "Stop recording"
+  },
+  "theme": {
+    "message": "Theme"
+  },
+  "focus": {
+    "message": "Focus"
+  },
+  "scale": {
+    "message": "Scale"
+  },
+  "devices": {
+    "message": "Devices"
+  },
+  "syncScroll": {
+    "message": "Sync scroll"
+  },
+  "syncClick": {
+    "message": "Sync click"
+  },
+  "syncInput": {
+    "message": "Sync input"
+  },
+  "deviceChrome": {
+    "message": "Show device chrome"
+  },
+  "compatibility": {
+    "message": "Compatibility Mode"
+  },
+  "compatibilityHelp": {
+    "message": "Removes iframe-blocking headers only from subframes while this preview is open."
+  },
+  "customResolution": {
+    "message": "Custom resolution"
+  },
+  "addCustom": {
+    "message": "Add custom"
+  },
+  "width": {
+    "message": "Width"
+  },
+  "height": {
+    "message": "Height"
+  },
+  "maxDevices": {
+    "message": "Choose up to 5 devices"
+  },
+  "about": {
+    "message": "About"
+  },
+  "recording": {
+    "message": "Recording"
+  },
+  "captureDone": {
+    "message": "Screenshot saved"
+  },
+  "recordDone": {
+    "message": "Recording saved"
+  },
+  "unsupported": {
+    "message": "This page does not allow extension injection"
+  },
+  "reloadAll": {
+    "message": "Reload all previews"
+  },
+  "openWindow": {
+    "message": "Open real device window"
+  },
+  "checkingFrame": {
+    "message": "Checking preview rendering..."
+  },
+  "frameReady": {
+    "message": "Ready"
+  },
+  "frameBlocked": {
+    "message": "The site still blocks iframe / redirect / Service Worker"
+  },
+  "frameBlockedHelp": {
+    "message": "Try iframe repair first. If it still fails, use Deep Fix to bypass Service Worker/cache."
+  },
+  "enableCompatibility": {
+    "message": "Enable Compatibility"
+  },
+  "retryCompatibility": {
+    "message": "Retry with Compatibility"
+  },
+  "compatibilityApplied": {
+    "message": "Compatibility Mode enabled"
+  },
+  "reloading": {
+    "message": "Reloading all previews"
+  },
+  "smartCompatibility": {
+    "message": "Fast Deep Engine v5"
+  },
+  "smartCompatibilityHelp": {
+    "message": "Automatically escalates iframe recovery from Compatibility to Deep and remembers the working mode per domain."
+  },
+  "diagnostics": {
+    "message": "Diagnostics"
+  },
+  "diagnosticHint": {
+    "message": "Check whether DNR rules are installed and actually matching requests."
+  },
+  "checkRules": {
+    "message": "Check rules"
+  },
+  "forceCompatibility": {
+    "message": "Repair iframe"
+  },
+  "checkingRules": {
+    "message": "Checking DNR rules..."
+  },
+  "deepCompatibility": {
+    "message": "Deep Compatibility"
+  },
+  "deepCompatibilityHelp": {
+    "message": "Bypass Service Worker + cache via Chrome debugger (Chrome shows a debugging warning while enabled)."
+  },
+  "deepCompatibilityOn": {
+    "message": "Deep Compatibility enabled · bypassing Service Worker/cache"
+  },
+  "smartAuto": {
+    "message": "Smart Auto Detection"
+  },
+  "smartAutoHelp": {
+    "message": "If a preview fails, automatically escalates Compatibility → Deep and remembers the mode per domain."
+  },
+  "smartAutoRecovering": {
+    "message": "Smart Auto is recovering..."
+  },
+  "smartAutoCompat": {
+    "message": "Smart Auto → Compatibility Mode"
+  },
+  "smartAutoDeep": {
+    "message": "Smart Auto → Deep Compatibility"
+  }
 }

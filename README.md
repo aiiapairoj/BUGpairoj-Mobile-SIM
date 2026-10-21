@@ -1,88 +1,55 @@
-# BUGpairoj Mobile SIM
+# BUGpairoj Mobile SIM v1.5.0 — Fast Deep
 
-Chrome Extension (Manifest V3) สำหรับดูเว็บไซต์ปัจจุบันหลายขนาดหน้าจอพร้อมกันแบบ Overlay
+Chrome Extension สำหรับ Preview เว็บไซต์หลายขนาดหน้าจอพร้อมกัน โดย v1.5 ปรับให้เข้าโหมดที่ใช้งานได้เร็วขึ้นและลดเวลารอ iframe
 
-**AI Pairoj — by BUGpairoj**
+## จุดใหม่ v1.5
 
-## ฟีเจอร์ที่พร้อมใช้
+- **Fast Deep Timeout = 1.2 วินาที** (เดิม v1.4 รอ 5 วินาที)
+- Domain ที่เคยใช้งานได้เฉพาะ **Deep Compatibility** จะเปิด Deep **ทันทีตั้งแต่เริ่ม Preview** ไม่รอ probe
+- Domain ใหม่เริ่มที่ Compatibility; ถ้า frame-agent ไม่รายงาน READY ภายใน 1.2 วินาที จะยกระดับเป็น Deep อัตโนมัติ
+- จำ Engine ต่อ Domain: `standard`, `compatibility`, `deep`
+- เมื่อปิด Extension จะ detach `chrome.debugger`, คืน cache/Service Worker behavior และลบ DNR session rules
 
-- Preview พร้อมกัน 1–5 อุปกรณ์
-- Preset มือถือ/แท็บเล็ต 16 ขนาด + Custom resolution
-- iOS / Android User-Agent สำหรับ document request ของ preview frame
-- Rotate Portrait / Landscape รายอุปกรณ์
-- Scale 40–110%
-- Dark / Light Theme
-- Focus Mode
-- Sync Scroll / Click / Input ระหว่าง preview frames
-- Screenshot preview เป็น PNG
-- Record active tab เป็น WebM 1080p/30fps (ขึ้นกับเครื่อง/Chrome)
-- Settings จำด้วย `chrome.storage.sync`
-- ปลด `X-Frame-Options` เฉพาะ subframe ในแท็บที่เปิดเครื่องมือ
-- Compatibility Mode สำหรับเว็บที่ CSP บล็อก iframe (ผู้ใช้เปิดเอง)
-- Keyboard shortcuts: `Alt+Shift+M` เปิด/ปิด, `Alt+Shift+S` screenshot
-- ไม่มี Login, Analytics หรือ Remote Code
+## Fast Path
 
-## ติดตั้งแบบ Unpacked
+```text
+Known Deep Domain
+  -> Apply DNR
+  -> Attach debugger/CDP
+  -> Bypass Service Worker + cache
+  -> Render preview immediately
 
-1. แตก ZIP นี้ไว้ในโฟลเดอร์ถาวร
-2. เปิด Chrome แล้วเข้า `chrome://extensions`
-3. เปิด **Developer mode**
-4. กด **Load unpacked**
-5. เลือกโฟลเดอร์ `BUGpairoj-Mobile-SIM`
-6. Pin Extension ไว้บน Toolbar
-7. เปิดหน้าเว็บ `http://` หรือ `https://` แล้วคลิกไอคอน Extension
-
-> Chrome ไม่อนุญาตให้ Extension ฉีด UI ลงหน้า `chrome://`, Chrome Web Store และหน้าระบบบางประเภท
-
-## วิธีใช้
-
-- คลิกไอคอน Extension เพื่อเปิด/ปิด Overlay
-- เลือกอุปกรณ์ใน Settings ได้สูงสุด 5 ตัว
-- ปุ่มหมุนอยู่เหนืออุปกรณ์แต่ละตัว
-- ใช้ Scale เพื่อย่อ/ขยายภาพรวมโดยไม่เปลี่ยน viewport ภายใน
-- Screenshot จะจับพื้นที่ preview ที่มองเห็นอยู่
-- Record จะบันทึก **แท็บปัจจุบัน** เป็น WebM และดาวน์โหลดอัตโนมัติ
-
-## Compatibility Mode
-
-ค่าเริ่มต้น Extension จะลบเฉพาะ `X-Frame-Options` ของ `sub_frame` ในแท็บที่เปิดเครื่องมือเท่านั้น
-
-ถ้า preview ว่างเพราะเว็บไซต์ใช้ CSP `frame-ancestors` แบบเข้ม ให้เปิด **Compatibility Mode** ใน Settings ระบบจะลบ `Content-Security-Policy` เฉพาะ response ของ `sub_frame` ในแท็บนั้นและสร้าง iframe ใหม่
-
-ควรเปิดเฉพาะตอนทดสอบเว็บที่คุณไว้ใจ เพราะการผ่อน CSP มีผลด้านความปลอดภัยภายใน preview frame
-
-## ข้อจำกัดที่ควรรู้
-
-- เว็บที่ใช้ COEP/CORP, frame-busting script, anti-bot หรือ authentication/cookie policy เข้ม อาจแสดงไม่สมบูรณ์
-- การจำลองนี้เน้น Responsive viewport + UA ของ frame ไม่ใช่ hardware emulation เต็มรูปแบบแบบ Chrome DevTools
-- Sync click ใช้ CSS selector จึงอาจไม่ตรง 100% หาก DOM ต่างกันตาม breakpoint
-- Recording ปัจจุบันบันทึกทั้ง visible tab รวม Overlay; ไม่ใช่ crop เฉพาะ device
-- MP4 ไม่ถูกแปลงในรุ่นนี้เพื่อคง Extension แบบ offline และลด dependency; ใช้ WebM ซึ่ง Chrome รองรับโดยตรง
-
-## Permissions
-
-| Permission | ใช้ทำอะไร |
-|---|---|
-| `activeTab` | ทำงานหลังผู้ใช้คลิก Extension |
-| `scripting` | Inject overlay เฉพาะ top frame |
-| `storage` | จำ theme/device/scale/settings |
-| `tabs` | อ่าน tab/window ที่กำลังใช้งานและ screenshot |
-| `declarativeNetRequestWithHostAccess` | แก้ XFO/CSP/UA เฉพาะ preview requests |
-| `tabCapture` | บันทึกวิดีโอแท็บ |
-| `offscreen` | รัน MediaRecorder ใน MV3 |
-| `downloads` | ดาวน์โหลดไฟล์ WebM |
-| `<all_urls>` | รองรับเว็บไซต์ที่ผู้ใช้เลือกเปิดเครื่องมือ |
-
-## Development / QA
-
-ไฟล์ทั้งหมดเป็น Vanilla JavaScript/CSS ไม่มี build step และไม่มี remote dependency
-
-ตรวจ syntax:
-
-```bash
-node --check background.js
-node --check content.js
-node --check frame-agent.js
-node --check offscreen.js
+Unknown Domain
+  -> Compatibility preview
+  -> wait max 1.2 sec
+  -> if not READY => Deep
+  -> reload preview
+  -> remember Deep when READY
 ```
 
+## ทำไมไม่ตัด iframe ออกทั้งหมด
+
+Multi-device preview แบบ 2–5 เครื่องอยู่ในหน้าเดียวต้องมี browsing context สำหรับแต่ละ viewport. Chrome Extension ปกติไม่มี `<webview>` แบบ Chrome App สำหรับแทน arbitrary website preview ดังนั้น iframe ยังเป็น renderer หลัก ส่วน Deep Compatibility ใช้ CDP เพื่อแก้เส้นทาง network/Service Worker/cache ให้ iframe โหลดได้เร็วและกว้างขึ้น
+
+หากต้องการไม่ใช้ iframe จริง ๆ ต้องเปลี่ยน UX เป็นการเปิดหลาย Chrome windows/tabs ตามขนาด Device ซึ่งจะไม่ใช่ side-by-side overlay แบบเดิม
+
+## วิธีติดตั้ง
+
+1. แตกไฟล์ `BUGpairoj-Mobile-SIM-v1.5.0.zip`
+2. เปิด `chrome://extensions`
+3. เปิด Developer mode
+4. Remove รุ่นเก่าหรือกด Reload หลังเลือกโฟลเดอร์รุ่นใหม่
+5. กด Load unpacked แล้วเลือกโฟลเดอร์ `BUGpairoj-Mobile-SIM`
+6. Refresh หน้าเว็บ แล้วคลิกไอคอน Extension
+
+## โหมด Engine
+
+- `STANDARD` — ไม่แก้ security headers
+- `COMPAT` — ใช้ DNR เพื่อจัดการ X-Frame-Options/CSP สำหรับ preview
+- `DEEP` — เพิ่ม `chrome.debugger` + CDP เพื่อ bypass Service Worker/cache ชั่วคราว
+
+## หมายเหตุด้านความปลอดภัย
+
+Compatibility/Deep มีไว้สำหรับ Development/Testing เท่านั้น เพราะอาจลดข้อจำกัดการ embed ของเว็บไซต์ในแท็บที่เปิด Simulator อยู่. กฎทั้งหมดเป็น session-scoped และถูกลบเมื่อปิด Extension. ไม่มี analytics, login หรือ remote code.
+
+**AI Pairoj — by BUGpairoj**

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "default_locale": "th",
   "minimum_chrome_version": "116",
   "permissions": [
@@ -13,9 +13,13 @@
     "declarativeNetRequestWithHostAccess",
     "tabCapture",
     "offscreen",
-    "downloads"
+    "downloads",
+    "webRequest",
+    "debugger"
   ],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
@@ -37,8 +41,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["frame-agent.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "frame-agent.js"
+      ],
       "all_frames": true,
       "run_at": "document_start",
       "match_about_blank": true

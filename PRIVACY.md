@@ -1,27 +1,11 @@
-# Privacy Policy — BUGpairoj Mobile SIM
+# Privacy — BUGpairoj Mobile SIM v1.5.0
 
-Last updated: 22 August 2026
+BUGpairoj Mobile SIM does not require an account and does not send analytics or browsing data to BUGpairoj servers.
 
-BUGpairoj Mobile SIM is designed as a local-first developer utility.
+Settings are stored with `chrome.storage.sync`. Screenshots and recordings are created only after user action and are downloaded locally.
 
-## Data collection
+Compatibility Mode temporarily creates session-scoped Declarative Net Request rules for iframe compatibility. Rules are removed when the preview closes or the tab closes.
 
-The extension does **not** collect, transmit, sell, or share browsing data, personal data, analytics, telemetry, credentials, screenshots, or recordings with any external server.
+The `webRequest` permission is used only for passive diagnostics of subframe response headers and network errors while a BUGpairoj Mobile SIM preview is active. It is not used with `webRequestBlocking`, does not modify requests, and diagnostic state stays in `chrome.storage.session`.
 
-## Local processing
-
-- Device preferences are stored using `chrome.storage.sync` under the user's Chrome account settings.
-- Screenshots are generated locally in the active tab and downloaded by the browser.
-- Recordings are captured locally with `chrome.tabCapture`, encoded locally with `MediaRecorder`, and downloaded as WebM.
-- No remote code, CDN scripts, analytics SDKs, or external API calls are included.
-
-## Network header modification
-
-When the user opens the preview overlay, the extension creates temporary Manifest V3 session rules scoped to that tab to support iframe previewing. Rules are removed when the panel is closed, the tab navigates, or the tab is closed.
-
-Compatibility Mode can remove the `Content-Security-Policy` response header for preview subframes in the active tab. This mode is off by default and must be explicitly enabled by the user.
-
-## Contact / credit
-
-AI Pairoj — by BUGpairoj
-YouTube: https://www.youtube.com/c/BUGpairoj
+The extension does not contain remote executable code.

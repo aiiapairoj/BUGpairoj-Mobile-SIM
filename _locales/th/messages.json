@@ -1,30 +1,161 @@
 {
-  "extName": {"message": "BUGpairoj Mobile SIM"},
-  "extDescription": {"message": "ดูและทดสอบเว็บไซต์หลายขนาดหน้าจอพร้อมกันแบบ Overlay"},
-  "settings": {"message": "ตั้งค่า"},
-  "close": {"message": "ปิด"},
-  "rotate": {"message": "หมุนหน้าจอ"},
-  "screenshot": {"message": "จับภาพ"},
-  "record": {"message": "บันทึกวิดีโอ"},
-  "stopRecord": {"message": "หยุดบันทึก"},
-  "theme": {"message": "ธีม"},
-  "focus": {"message": "Focus"},
-  "scale": {"message": "ขนาดแสดงผล"},
-  "devices": {"message": "อุปกรณ์"},
-  "syncScroll": {"message": "ซิงก์ Scroll"},
-  "syncClick": {"message": "ซิงก์ Click"},
-  "syncInput": {"message": "ซิงก์ Input"},
-  "deviceChrome": {"message": "แสดงกรอบอุปกรณ์"},
-  "compatibility": {"message": "Compatibility Mode"},
-  "compatibilityHelp": {"message": "ใช้เมื่อ iframe ว่าง: จะผ่อน CSP เฉพาะ subframe ในแท็บนี้"},
-  "customResolution": {"message": "ขนาดกำหนดเอง"},
-  "addCustom": {"message": "เพิ่ม Custom"},
-  "width": {"message": "กว้าง"},
-  "height": {"message": "สูง"},
-  "maxDevices": {"message": "เลือกได้สูงสุด 5 อุปกรณ์"},
-  "about": {"message": "เกี่ยวกับ"},
-  "recording": {"message": "กำลังบันทึก"},
-  "captureDone": {"message": "บันทึกภาพแล้ว"},
-  "recordDone": {"message": "บันทึกวิดีโอแล้ว"},
-  "unsupported": {"message": "หน้านี้ไม่รองรับการฉีด Extension"}
+  "extName": {
+    "message": "BUGpairoj Mobile SIM"
+  },
+  "extDescription": {
+    "message": "ดูและทดสอบเว็บไซต์หลายขนาดหน้าจอพร้อมกัน พร้อม Smart Auto Detection, Deep Compatibility และจำโหมดแยกตาม Domain"
+  },
+  "settings": {
+    "message": "ตั้งค่า"
+  },
+  "close": {
+    "message": "ปิด"
+  },
+  "rotate": {
+    "message": "หมุนหน้าจอ"
+  },
+  "screenshot": {
+    "message": "จับภาพ"
+  },
+  "record": {
+    "message": "บันทึกวิดีโอ"
+  },
+  "stopRecord": {
+    "message": "หยุดบันทึก"
+  },
+  "theme": {
+    "message": "ธีม"
+  },
+  "focus": {
+    "message": "Focus"
+  },
+  "scale": {
+    "message": "ขนาดแสดงผล"
+  },
+  "devices": {
+    "message": "อุปกรณ์"
+  },
+  "syncScroll": {
+    "message": "ซิงก์ Scroll"
+  },
+  "syncClick": {
+    "message": "ซิงก์ Click"
+  },
+  "syncInput": {
+    "message": "ซิงก์ Input"
+  },
+  "deviceChrome": {
+    "message": "แสดงกรอบอุปกรณ์"
+  },
+  "compatibility": {
+    "message": "Compatibility Mode"
+  },
+  "compatibilityHelp": {
+    "message": "ลบ header ที่บล็อก iframe เฉพาะ subframe ระหว่างที่ Preview นี้เปิดอยู่"
+  },
+  "customResolution": {
+    "message": "ขนาดกำหนดเอง"
+  },
+  "addCustom": {
+    "message": "เพิ่ม Custom"
+  },
+  "width": {
+    "message": "กว้าง"
+  },
+  "height": {
+    "message": "สูง"
+  },
+  "maxDevices": {
+    "message": "เลือกได้สูงสุด 5 อุปกรณ์"
+  },
+  "about": {
+    "message": "เกี่ยวกับ"
+  },
+  "recording": {
+    "message": "กำลังบันทึก"
+  },
+  "captureDone": {
+    "message": "บันทึกภาพแล้ว"
+  },
+  "recordDone": {
+    "message": "บันทึกวิดีโอแล้ว"
+  },
+  "unsupported": {
+    "message": "หน้านี้ไม่รองรับการฉีด Extension"
+  },
+  "reloadAll": {
+    "message": "โหลดทุกหน้าจอใหม่"
+  },
+  "openWindow": {
+    "message": "เปิดหน้าต่างจริง"
+  },
+  "checkingFrame": {
+    "message": "กำลังตรวจสอบการแสดงผล..."
+  },
+  "frameReady": {
+    "message": "พร้อมใช้งาน"
+  },
+  "frameBlocked": {
+    "message": "เว็บยังบล็อก iframe / Redirect / Service Worker"
+  },
+  "frameBlockedHelp": {
+    "message": "ลองซ่อม iframe ก่อน ถ้ายังไม่ได้ให้ใช้ Deep Fix เพื่อ bypass Service Worker/cache"
+  },
+  "enableCompatibility": {
+    "message": "เปิด Compatibility"
+  },
+  "retryCompatibility": {
+    "message": "โหลดใหม่ด้วย Compatibility"
+  },
+  "compatibilityApplied": {
+    "message": "Compatibility Mode เปิดแล้ว"
+  },
+  "reloading": {
+    "message": "กำลังโหลดทุกหน้าจอใหม่"
+  },
+  "smartCompatibility": {
+    "message": "Fast Deep Engine v5"
+  },
+  "smartCompatibilityHelp": {
+    "message": "ตรวจ iframe อัตโนมัติ → Compatibility → Deep และจำโหมดที่ใช้ได้แยกตาม Domain"
+  },
+  "diagnostics": {
+    "message": "Diagnostics"
+  },
+  "diagnosticHint": {
+    "message": "กดตรวจสอบเพื่อดูว่า DNR ถูกติดตั้งและ match request จริงหรือไม่"
+  },
+  "checkRules": {
+    "message": "ตรวจ Rule"
+  },
+  "forceCompatibility": {
+    "message": "ซ่อม iframe"
+  },
+  "checkingRules": {
+    "message": "กำลังตรวจ DNR rules..."
+  },
+  "deepCompatibility": {
+    "message": "Deep Compatibility"
+  },
+  "deepCompatibilityHelp": {
+    "message": "ข้าม Service Worker + cache ผ่าน Chrome debugger (Chrome จะแสดงแถบเตือนขณะเปิด)"
+  },
+  "deepCompatibilityOn": {
+    "message": "Deep Compatibility เปิดแล้ว · bypass Service Worker/cache"
+  },
+  "smartAuto": {
+    "message": "Smart Auto Detection"
+  },
+  "smartAutoHelp": {
+    "message": "ถ้า iframe ไม่ขึ้น ระบบจะไล่ Compatibility → Deep อัตโนมัติ และจำค่าต่อ Domain"
+  },
+  "smartAutoRecovering": {
+    "message": "Smart Auto กำลังแก้ให้..."
+  },
+  "smartAutoCompat": {
+    "message": "Smart Auto → Compatibility Mode"
+  },
+  "smartAutoDeep": {
+    "message": "Smart Auto → Deep Compatibility"
+  }
 }

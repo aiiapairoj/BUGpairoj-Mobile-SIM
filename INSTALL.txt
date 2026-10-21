@@ -1,13 +1,14 @@
-BUGpairoj Mobile SIM - INSTALL
+BUGpairoj Mobile SIM v1.5.0
 
-1) เปิด Google Chrome
-2) พิมพ์ chrome://extensions
-3) เปิด Developer mode
-4) คลิก Load unpacked
-5) เลือกโฟลเดอร์ BUGpairoj-Mobile-SIM
-6) เปิดเว็บ http:// หรือ https://
-7) คลิกไอคอน BUGpairoj Mobile SIM
+1. แตก ZIP
+2. เปิด chrome://extensions
+3. เปิด Developer mode
+4. Remove v1.3 เดิม (แนะนำสำหรับ clean install)
+5. Load unpacked
+6. เลือกโฟลเดอร์ BUGpairoj-Mobile-SIM
+7. เปิดเว็บไซต์แล้วคลิกไอคอน BUGpairoj Mobile SIM
 
-Shortcut:
-Alt+Shift+M = เปิด/ปิด
-Alt+Shift+S = Screenshot
+Smart Auto Detection เปิดเป็นค่าเริ่มต้น
+ถ้าเว็บต้องใช้ Deep Compatibility ระบบจะเปิดให้อัตโนมัติหลังตรวจว่า iframe โหลดไม่สำเร็จ และจำค่าของ Domain ไว้สำหรับครั้งถัดไป
+
+หมายเหตุ: Deep Compatibility ใช้ chrome.debugger จึงมีแถบแจ้งเตือนของ Chrome ขณะทำงาน

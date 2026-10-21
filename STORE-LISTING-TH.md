@@ -15,3 +15,7 @@ BUGpairoj Mobile SIM เป็นเครื่องมือสำหรั�
 
 ## Single purpose
 ช่วยผู้ใช้ preview และทดสอบ Responsive Web UI หลาย viewport พร้อมกันภายในแท็บที่ผู้ใช้เรียก Extension
+
+
+## ใหม่ใน v1.5
+Fast Deep ลดเวลาตรวจ Preview เหลือ 1.2 วินาที และ Domain ที่เคยต้องใช้ Deep จะเข้า Deep ทันที พร้อมจำโหมดแยกตาม Domain
